@@ -1,0 +1,7 @@
+---
+- name: Configure web servers 
+  ansible.builtin.import_playbook: configure-webserver.yml
+- name: Deploy demo website
+  ansible.builtin.import_playbook: deploy-website.yml
+- name: Verify web server health
+  ansible.builtin.import_playbook: health-check.yml

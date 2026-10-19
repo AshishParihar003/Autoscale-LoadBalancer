@@ -1,0 +1,16 @@
+---
+- name: Check Autoscale web server health
+  hosts: webservers
+  gather_facts: false
+
+  tasks:
+    - name: Check weather Nginx service is active
+      ansible.builtin.command:
+        cmd: systemct1 is-active nginx
+      register: nginx_status
+      changed_when: false 
+      failed_when: nginx_status.stdout != "active"
+
+    - name: Display Nginx health status
+      ansible.builtin.debug:
+        msg: "Nginx is active on this web server"

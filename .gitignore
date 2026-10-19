@@ -1,0 +1,16 @@
+node_modules/
+.next/
+dist/
+build/
+
+.env
+.env.*
+!.env.example
+
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
+*.tfplan
+
+*.pem
+*.key

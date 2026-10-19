@@ -1,0 +1,19 @@
+
+---
+- name: Check AutoScale website HTTP health
+  hosts: webservers
+  gather_facts: false
+
+  tasks:
+    - name: Request the local website
+      ansible.builtin.uri:
+        url: http://127.0.0.1/
+        method: GET
+        status_code: 200
+        return_content: false
+      register: website_response
+      changed_when: false
+
+    - name: Display website health result
+      ansible.builtin.debug:
+        msg: "Website returned HTTP {{ website_response.status }}."

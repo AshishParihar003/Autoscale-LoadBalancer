@@ -1,0 +1,39 @@
+
+---
+- name: Deploy AutoScale demo website
+  hosts: webservers
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Ensure Nginx is installed
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Deploy demo website page
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>AutoScale Cloud Controller</title>
+          </head>
+          <body>
+            <h1>AutoScale Cloud Controller</h1>
+            <p>Website deployed successfully by Ansible.</p>
+          </body>
+          </html>
+
+    - name: Ensure Nginx is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
