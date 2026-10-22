@@ -1,12 +1,16 @@
 node_modules/
 .next/
 dist/
+dist-server/
 build/
 
 .env
 .env.*
 !.env.example
 
+**/terraform.tfvars
+**/terraform.tfstate*
+**/.terraform/
 terraform.tfstate
 terraform.tfstate.*
 .terraform/
